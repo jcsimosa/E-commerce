@@ -1,15 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
 import { useEffect,useState } from 'react';
 import ProductCard from './ProductsCard';
 import NavBar from "./NavBar"
-import SideBar from './SideBar';
 import { Route,Routes } from 'react-router-dom';
 import Product from './Product';
 import Buy from './Buy';
+import AuthRoute from './Auth';
 
 function App() {
-  
+
+  const [user, setUser] = useState(false)
+  const [currentUser, setCurrentUser] = useState(null)
   const [products, setProducts] = useState([])
 
  useEffect(()=> {
@@ -27,7 +28,6 @@ function App() {
         Welcome!
       </p>
         <NavBar />
-        {/* <SideBar /> */}
         <Routes>
           <Route index element={products.map((obj) => <ProductCard key={obj.id} obj={obj}/>)}/>
           <Route path='/products/:id' element={<Product/>}></Route>
