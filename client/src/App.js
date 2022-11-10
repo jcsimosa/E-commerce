@@ -2,10 +2,29 @@ import './App.css';
 import { useEffect,useState } from 'react';
 import ProductCard from './ProductsCard';
 import NavBar from "./NavBar"
-import { Route,Routes } from 'react-router-dom';
+import { Route,Routes, useNavigate } from 'react-router-dom';
 import Product from './Product';
 import Buy from './Buy';
+import Signup from './Signup';
 import AuthRoute from './Auth';
+
+
+
+
+// const AuthRoute = ({children, user}) => {
+//   const navigate = useNavigate()
+//   useEffect ( () => {
+//     if (!user) {
+//       navigate("/signup")
+//     }
+//   },[])
+
+//   return (
+//       <div>
+//           {children}
+//       </div>
+//   )
+// }
 
 function App() {
 
@@ -19,6 +38,20 @@ function App() {
     r.json().then(setProducts)
   })
  },[])
+
+//  useEffect(() => {
+//   fetch("/me").then((res) => {
+  
+//     if (res.ok) {
+//       res.json().then((user) => {
+//         setCurrentUser(user);
+//         setUser(true);
+//       });
+//     } else {
+//       res.json().then(console.log)
+//     }
+//   });
+// }, []); 
     
   
   return (
@@ -30,8 +63,16 @@ function App() {
         <NavBar />
         <Routes>
           <Route index element={products.map((obj) => <ProductCard key={obj.id} obj={obj}/>)}/>
-          <Route path='/products/:id' element={<Product/>}></Route>
-          <Route path='/buy' element={<Buy/>}></Route>
+          
+          <Route path='/products/:id' element={<Product/>}/>
+          
+          <Route path='/signup' element={<Signup/>}/>
+          
+          <Route path='/buy' element={
+            <AuthRoute user={user}>
+              <Buy/>
+            </AuthRoute>
+          }/>
         </Routes>
         
 
