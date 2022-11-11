@@ -66,7 +66,7 @@ function App() {
           
           <Route path='/products/:id' element={<Product/>}/>
           
-          <Route path='/signup' element={<Signup/>}/>
+          <Route path='/signup' element={<Signup setUser={setUser} setCurrentUser={setCurrentUser}/>}/>
           
           <Route path='/buy' element={
             <AuthRoute user={user}>
