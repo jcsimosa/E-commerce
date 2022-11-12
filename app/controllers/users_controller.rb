@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     def show
-       byebug 
+       render json: current_user 
     end
     def create 
         user = User.create!(user_params)

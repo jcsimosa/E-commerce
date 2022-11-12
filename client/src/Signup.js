@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 function Signup({setUser,setCurrentUser}) {
 
@@ -8,6 +10,7 @@ function Signup({setUser,setCurrentUser}) {
     const [password, setPassword] = useState('')
     const [address, setAddress] = useState('')
 
+    const Navigate = useNavigate()
     
     
     const handleInfo = (e) => {
@@ -29,11 +32,13 @@ function Signup({setUser,setCurrentUser}) {
                     setCurrentUser(true)
                     setUser(userData)
                     alert('User created')
+                    Navigate("/buy")
                 })
             }
         })
     } 
     
+
     return(
         <div>
             <form onSubmit={handleInfo}>
@@ -49,7 +54,7 @@ function Signup({setUser,setCurrentUser}) {
                 <div>
                     <input required="address" placeholder="address" onChange={e => setAddress(e.target.value)}></input>
                 </div>
-                <input type="submit" value='Submit'></input>
+                <input type="submit"></input>
             </form>
         </div>
     )

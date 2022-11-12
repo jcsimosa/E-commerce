@@ -6,7 +6,7 @@ const AuthRoute = ({children, user}) => {
     const navigate = useNavigate()
     useEffect ( () => {
       if (!user) {
-        navigate("/signup")
+        navigate("/login")
       }
     },[])
 
