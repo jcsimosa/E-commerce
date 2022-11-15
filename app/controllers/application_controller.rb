@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
     rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
 def current_user
-    @current_user||=User.find_by[id: session[:user_id]]
+    @current_user||=User.find_by(id: session[:user_id])
 end
 
 private 

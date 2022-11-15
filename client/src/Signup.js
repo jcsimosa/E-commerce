@@ -29,8 +29,8 @@ function Signup({setUser,setCurrentUser}) {
         .then(r => {
             if (r.ok){
                 r.json().then(userData => {
-                    setCurrentUser(true)
-                    setUser(userData)
+                    setCurrentUser(userData)
+                    setUser(true)
                     alert('User created')
                     Navigate("/buy")
                 })

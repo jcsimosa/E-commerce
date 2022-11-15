@@ -14,6 +14,7 @@ function App() {
   const [user, setUser] = useState(false)
   const [currentUser, setCurrentUser] = useState(null)
   const [products, setProducts] = useState([])
+  const navigate = useNavigate()
 
  useEffect(()=> {
   fetch("/products")
@@ -22,9 +23,17 @@ function App() {
   })
  },[])
 
+  const logout = () => {
+    fetch('/users', {method: "delete"})
+    .then(() => {
+      setUser(false)
+      setCurrentUser(null)
+      navigate("/")
+    })
+  }
+
  useEffect(() => {
   fetch("/me").then((res) => {
-  
     if (res.ok) {
       res.json().then((user) => {
         setCurrentUser(user);
@@ -44,14 +53,14 @@ function App() {
       <p className="text-3xl text-gray-700 font-bold mb-5">
         Welcome!
       </p>
-        <NavBar />
+        <NavBar logout={logout}/>
         <Routes>
           <Route index element={products.map((obj) => <ProductCard key={obj.id} obj={obj}/>)}/>
           
           <Route path='/products/:id' element={<Product/>}/>
           
           <Route path='/signup' element={<Signup setUser={setUser} setCurrentUser={setCurrentUser}/>}/>
-          <Route path='/login' element={<Login/>}></Route>
+          <Route path='/login' element={<Login setUser={setUser} setCurrentUser={setCurrentUser}/>}></Route>
           <Route path='/buy' element={
             <AuthRoute user={user}>
               <Buy/>
