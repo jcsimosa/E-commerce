@@ -7,5 +7,4 @@ Product.create(name: "Ps5", description: "Inmersive console that will provide ho
 
 
 
-
 puts("done seeding")

@@ -44,7 +44,8 @@ function App() {
     }
   });
 }, []); 
-    
+  
+  console.log(products)
   console.log(user)
   console.log(currentUser)
   return (

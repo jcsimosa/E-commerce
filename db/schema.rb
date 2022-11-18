@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_16_200420) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_15_235809) do
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -21,14 +21,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_16_200420) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.string "comments"
+    t.string "comment"
     t.float "star_rating"
-    t.integer "user_id_id", null: false
-    t.integer "product_id_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id_id"], name: "index_reviews_on_product_id_id"
-    t.index ["user_id_id"], name: "index_reviews_on_user_id_id"
+    t.integer "user_id", null: false
+    t.integer "product_id", null: false
+    t.index ["product_id"], name: "index_reviews_on_product_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,6 +38,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_16_200420) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "reviews", "product_ids"
-  add_foreign_key "reviews", "user_ids"
+  add_foreign_key "reviews", "products"
+  add_foreign_key "reviews", "users"
 end
