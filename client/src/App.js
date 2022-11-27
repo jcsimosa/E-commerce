@@ -45,9 +45,8 @@ function App() {
   });
 }, []); 
   
-  console.log(products)
-  console.log(user)
-  console.log(currentUser)
+  // console.log(user)
+  // console.log(currentUser)
   return (
 
     <div className="container mx-auto bg-gray-200 rounded-xl shadow border p-8 m-10">
