@@ -1,6 +1,7 @@
 import { useState,useEffect } from "react"
 import { Link, useParams } from "react-router-dom" 
-import Review from "./Review"
+import StarRating from "./StarRating"
+
 
 function Product(){
     
@@ -12,7 +13,6 @@ function Product(){
         img: ''
       })
     const [error, setError] = useState('')
-    // const [reviews, setReviews] = useState('')
 
     const {id} = useParams()
 
@@ -30,11 +30,17 @@ function Product(){
     },[])
 
     
-    console.log(product)
+    // console.log(product)
 
     const reviewsmap = product.reviews.map(review => {
+        
         return (
-            <p>{review.comment}</p>
+            <div key={review.id}>
+                <p>{review.comment}</p>
+                <p>{review.review_with_user}</p>
+                <StarRating star={review.star_rating}/>
+            </div>
+            
         )
     })
 
