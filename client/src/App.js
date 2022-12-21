@@ -4,10 +4,12 @@ import ProductCard from './ProductsCard';
 import NavBar from "./NavBar"
 import { Route,Routes, useNavigate } from 'react-router-dom';
 import Product from './Product';
-import Buy from './Buy';
+import Cart from './Cart';
 import Signup from './Signup';
 import Login from './Login'
 import AuthRoute from './Auth';
+import Hero from './Hero';
+
 
 function App() {
 
@@ -16,12 +18,13 @@ function App() {
   const [products, setProducts] = useState([])
   const navigate = useNavigate()
 
+  
  useEffect(()=> {
   fetch("/products")
   .then(r => {
     r.json().then(setProducts)
   })
- },[])
+ },[user])
 
   const logout = () => {
     fetch('/users', {method: "delete"})
@@ -45,8 +48,9 @@ function App() {
   });
 }, []); 
   
-  // console.log(user)
-  // console.log(currentUser)
+  console.log(user)
+  console.log(currentUser)
+  console.log(products)
   return (
 
     <div className="container mx-auto bg-gray-200 rounded-xl shadow border p-8 m-10">
@@ -54,18 +58,19 @@ function App() {
         Welcome!
       </p>
         <NavBar logout={logout}/>
+        <Hero/>
         <Routes>
-          <Route index element={products.map((obj) => <ProductCard key={obj.id} obj={obj}/>)}/>
+          <Route path='cart' element={
+            <AuthRoute user={user}>
+              <Cart/>
+            </AuthRoute>
+          }/>
+          <Route index element={<ProductCard products={products}/>}/>
           
           <Route path='/products/:id' element={<Product/>}/>
           
           <Route path='/signup' element={<Signup setUser={setUser} setCurrentUser={setCurrentUser}/>}/>
           <Route path='/login' element={<Login setUser={setUser} setCurrentUser={setCurrentUser}/>}></Route>
-          <Route path='/buy' element={
-            <AuthRoute user={user}>
-              <Buy/>
-            </AuthRoute>
-          }/>
         </Routes>
         
 

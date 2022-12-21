@@ -10,13 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_29_000123) do
-  create_table "cart", force: :cascade do |t|
-    t.string "product_name"
-    t.float "product_price"
-    t.string "product_img"
-  end
-
+ActiveRecord::Schema[7.0].define(version: 2022_11_15_235809) do
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "description"

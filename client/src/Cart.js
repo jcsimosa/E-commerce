@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 
-function Buy(){
+function Cart(){
 
     const [payment, setPayment] = useState(true)
     
@@ -23,4 +23,4 @@ function Buy(){
         </div>       
     )
 }
-export default Buy
+export default Cart
