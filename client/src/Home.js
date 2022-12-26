@@ -1,15 +1,30 @@
 import {Link} from "react-router-dom"
 import './App.css';
+import Hero from "./Hero";
+import ProductCard from "./ProductCard";
 
 
-function ProductCard({products}) {
-    
-    
+function Home({products}) {
+
     return (
 
     <div>
-       
-       <div className="bg-white">
+      <Hero/>
+      <section className="py-16">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[30px] max-w-sm mx-auto md:max-w-none md:mx-0">
+            {products.map((product)=>{
+              return <ProductCard key={product.id} product={product}/>
+            })}
+          </div>
+        </div>  
+      </section>  
+
+
+
+
+
+       {/* <div className="bg-white">
       <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="sr-only">Products</h2>
 
@@ -31,7 +46,7 @@ function ProductCard({products}) {
           ))}
         </div>
       </div>
-    </div>
+    </div> */}
         
         
             {/* <ol>
@@ -45,4 +60,4 @@ function ProductCard({products}) {
         </div>
     )
 }
-export default ProductCard
+export default Home

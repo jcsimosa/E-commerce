@@ -1,6 +1,5 @@
 import './App.css';
 import { useEffect,useState } from 'react';
-import ProductCard from './ProductsCard';
 import NavBar from "./NavBar"
 import { Route,Routes, useNavigate } from 'react-router-dom';
 import Product from './Product';
@@ -8,7 +7,7 @@ import Cart from './Cart';
 import Signup from './Signup';
 import Login from './Login'
 import AuthRoute from './Auth';
-import Hero from './Hero';
+import Home from './Home';
 
 
 function App() {
@@ -50,7 +49,7 @@ function App() {
   
   console.log(user)
   console.log(currentUser)
-  console.log(products)
+  // console.log(products)
   return (
 
     <div className="container mx-auto bg-gray-200 rounded-xl shadow border p-8 m-10">
@@ -58,14 +57,15 @@ function App() {
         Welcome!
       </p>
         <NavBar logout={logout}/>
-        <Hero/>
+        
         <Routes>
           <Route path='cart' element={
             <AuthRoute user={user}>
               <Cart/>
             </AuthRoute>
           }/>
-          <Route index element={<ProductCard products={products}/>}/>
+          <Route index element={<Home products={products}/>}/>
+          
           
           <Route path='/products/:id' element={<Product/>}/>
           
