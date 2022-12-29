@@ -8,6 +8,7 @@ import Signup from './Signup';
 import Login from './Login'
 import AuthRoute from './Auth';
 import Home from './Home';
+import CreateProduct from './CreateProduct';
 
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
         <NavBar logout={logout}/>
         
         <Routes>
+          <Route path='/create' element={<CreateProduct/>}/>
           <Route path='cart' element={
             <AuthRoute user={user}>
               <Cart/>
